@@ -18,3 +18,12 @@ header {
     text-align:justify;
     text-justify:inter-ideograph;
 }
+
+.link {
+    text-decoration:none;
+    color: gray;
+}
+
+.link:hover {
+    color: rgb(0, 119, 255);
+}
