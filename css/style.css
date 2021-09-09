@@ -14,7 +14,7 @@ header {
     text-align:left;
 }
 
-.card-text {
+.card-text,.text {
     text-align:justify;
     text-justify:inter-ideograph;
 }
