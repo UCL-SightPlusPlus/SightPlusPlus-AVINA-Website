@@ -36,7 +36,7 @@
               <a href="#overview" class="nav-link">Overview</a>
             </li>
             <li class="nav-item active">
-              <a href="#deployment" class="nav-link">Deployment</a>
+              <a href="#installation" class="nav-link">Installation</a>
             </li>
             <li class="nav-item active">
               <a href="#team" class="nav-link">Team</a>
@@ -149,12 +149,68 @@
           </div>
         </div>
         <hr>
-        <div id="deployment">
+        <div id="installation">
           <h2 class="fw-light">Installation</h2>
           <div class="container text mt-5" style="width: 70%;"> 
             <h4 class="fw-light">App</h4>
+            <p>
+              The app only works on Android for now. We recommend using it on devices with Android version under 11.0 for the best user experience. On Android 11.0 the user has to grant 'always' level permission for 'access location' in the setting page.
+            </p>
+            <ul>
+              <li>To open the project, please download the Flutter sdk and add it to the environment PATH.</li>
+              <li>Then you have to install Android Studio and add Flutter and Dart plugin to it. </li>
+              <li>Go to pubspec.yaml and run 'flutter pub get' to download all the dependencies.</li>
+              <li>Use Android Studio to open the project, add a run configuration and set the Dart entry point to 'main.dart'.</li>
+              <li>Go to 'network_server_state.dart' and change the values in the 'connectToWifi' function.</li>
+              <li>Set up your own network, start local server under that network.</li>
+              <li>Turn on the developer mode on your phone and connect it to your laptop.</li>
+              <li>Run the app on your phone.</li>
+            </ul>
+            <h4 class="fw-light">Bluetooth Beacons</h4>
+            <p>We recommand using beacons from 'jaalee' and using iBeacon mode. If you are not using 'jaalee' beacons, please make sure the beacons support iBeacon protocol and go to 'bluetooth_beacon_state.dart' then change the identifier in the 'initBeaconScanner' function to your identifier(s).
+
+              When configuring the Bluetooth beacons, set the Major field as floor id and Minor field as room id.</p>
             <h4 class="fw-light">Location Server</h4>
+            <h5 class="fw-light">Prerequisites</h5>
+            <ul>
+              <li>An Azure account with access to QnA service.</li>
+              <li>Docker</li>
+              <li>Powershell Core</li>
+              <li>Complete the Organisation server installation & deployment as you will be asked the Domain Name or IP of the organisation server during setup.</li>
+            </ul>
+            <h5 class="fw-light">Create an Azure QnA Service and a KnowledgeBase</h5>
+            <p>Since AVINA integrates with a Chatbot service to answer the user's questions, the relevant information about the service must be provided when setting up the application. To create the Azure QnA Service and the Knowledge Base navigate to Azure QnA Maker. Follow the instructions to complete the creation of the chatbot. After the creation of the service, you will be redirected to page like this:</p>
+            <img src="images/kb.png" alt="knowledge base" width="90%">
+            <p>The Knowledge Base Host is the HTTPS URL in the 2nd line without the /qnamaker. (ex. https://gosh-bot.azurewebsites.net)</p>
+            <p>The Endpoint Key is located on the 3rd line after EndpointKey {EndpointKey}.</p>
+            <p>The Knowledge Base ID is at the 1st line between the /knowledgebases/{Knowledge Base ID}/generateAnswer.</p>
+            <h5 class="fw-light">Deployment and Configuration</h5>
+            <p>The AVINA location server is a containerized application, so it can easily be deployed to a cloud service or configured to run on a custom (on-premises) windows, linux, or mac-os machine of your choosing. An on-premise installation is favorable so that the multiple cameras that are installed can send records to the server with minimum latency. A Powershell script is provided to automate configuration.</p>
+            <b>Deploying AVINA location server to a server of your choosing</b>
+            <ul>
+              <li>Download the code.</li>
+              <li>
+                <p>Once downloaded, under the /scripts directory you will find a Powershell Core script named ConfigureSightPlusPlusAppSettings.ps1.</p>
+                <p>Once run (with Powershell Core) the script will ask you to fill in the required settings to configure the .env file, such as the Knowledge Base ID, the Knowledge Base Host and the Endpoint Key that were generated in an earlier step.</p>
+              </li>
+              <li>After configuring the application, you can deploy it by running docker-compose up --build -d.</li>
+            </ul>
             <h4 class="fw-light">Organisation Server</h4>
+            <h5 class="fw-light">Prerequisites</h5>
+            <ul>
+              <li>Docker</li>
+            </ul>
+            <h5 class="fw-light">Deployment and Configuration</h5>
+            <p>The AVINA organisation server is a containerized application, so it can easily be deployed to a cloud service or configured to run on a custom (on-premises) windows, linux, or mac-os machine of your choosing.</p>
+            <b>Deploying AVINA organisation server to a server of your choosing</b>
+            <ul>
+              <li>Download the code.</li>
+              <li>Once downloaded, under the /public/images directory replace the existing logo.png with your organisation's logo after naming it logo.png.</li>
+              <li>Open the .env file with any editor and replace the ORG_NAME value with your organisation's name.</li>
+              <li>Deploy the server by running docker-compose up --build -d.</li>
+              <li>Open a browser and redirect to localhost:5000</li>
+            </ul>
+            <i>For Azure deployment, you can follow this <a href="https://docs.microsoft.com/en-us/azure/container-instances/tutorial-docker-compose">guide</a></i>
           </div>
         <hr>
         <div id="team">
@@ -162,7 +218,7 @@
           <div class="container mt-5 mb-5">
             <p><h5>Lydia Tsami</h5>&nbsp;&nbsp;<i class="far fa-envelope"></i> Email: lydia.tsami@gmail.com <br><a href="https://www.linkedin.com/in/lydia-tsami/" class="link"><i class="fab fa-linkedin" color="grey" width="50px"></i>&nbsp;LinkedIn</a></p>
             <p><h5>Zhaoxi Liu</h5>&nbsp;&nbsp;<i class="far fa-envelope"></i> Email: justthinking1998@gmail.com<br><a href="https://www.linkedin.com/in/%E9%92%8A%E6%B1%90-%E5%88%98-32947a128/" class="link"><i class="fab fa-linkedin" color="grey" width="50px"></i>&nbsp;LinkedIn</a></p>
-            <p><h5>Karish Singh</h5>&nbsp;&nbsp;<i class="far fa-envelope"></i> Email: karish.singh28@gmail.com<br><a href="#" class="link"><i class="fab fa-linkedin" color="grey" width="50px"></i>&nbsp;LinkedIn</a></p>
+            <p><h5>Karish Singh</h5>&nbsp;&nbsp;<i class="far fa-envelope"></i> Email: karish.singh.20@ucl.ac.uk<br><a href="#" class="link"><i class="fab fa-linkedin" color="grey" width="50px"></i>&nbsp;LinkedIn</a></p>
             <p><h5>Dongming Shi</h5>&nbsp;&nbsp;<i class="far fa-envelope"></i> Email: logicnoongm@gmail.com<br><a href="https://www.linkedin.com/in/东明-石-7ab70713b/" class="link"><i class="fab fa-linkedin" color="grey" width="50px"></i>&nbsp;LinkedIn</a></p>
             <p><h5>Sen Lin</h5>&nbsp;&nbsp;<i class="far fa-envelope"></i> Email: senlin0710@gmail.com<br><a href="https://www.linkedin.com/in/lin-sen" class="link"><i class="fab fa-linkedin" color="grey" width="50px"></i>&nbsp;LinkedIn</a></p>
           </div>
