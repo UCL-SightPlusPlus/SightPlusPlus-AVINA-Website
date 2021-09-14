@@ -27,3 +27,7 @@ header {
 .link:hover {
     color: rgb(0, 119, 255);
 }
+
+.head {
+    padding-top: 50px;
+}
