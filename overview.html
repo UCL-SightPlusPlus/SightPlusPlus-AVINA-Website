@@ -39,6 +39,9 @@
               <a href="installation.html" class="nav-link">Installation</a>
             </li>
             <li class="nav-item active">
+              <a href="test.html" class="nav-link">Test</a>
+            </li>
+            <li class="nav-item active">
               <a href="team.html" class="nav-link">Team</a>
             </li>
             <li class="nav-item active">
@@ -68,6 +71,11 @@
               </p>
             </div>
             <img class="card-img-top" src="images/arch.png" alt="architecture">
+            <div class="container text mb-5">
+              <p>
+                AVINA consist of three different systems: the app, location server and organisation server. Along with this are Bluetooth beacons and NUCs (mini-PCs) and cameras.
+              </p>
+            </div>
             <div class="card">
               <div class="card-header">
                 Component
@@ -75,10 +83,11 @@
               <div class="card-body">
                 <h5 class="card-title">App</h5>
                 <p class="card-text">
-                  It uses Dart as the programming language, and the developer only needs to create one codebase to build apps for Android and iOS.
-                  Our app needs to be able to run on both Android and iOS platform, and using Flutter to develop can reduce the development effort significantly.
-                  Flutter has many plugins developed by third party, which implements many necessary functions for our project, 
-                  for example, WiFi scanning, Speech to Text, Text to Speech, Push Notification and HTTP Connection.
+                  The app is created with Flutter is installed on Android devices.
+
+                  Visually impaired user uses this app to communicate the with the location server. The location sends information about the location to the user, and it is read through voice over back to the user. The user can also ask questions about the location—these can be room specific questions about the seating ability or the queue length, or more generic questions like ‘what are the peak times?’
+
+                  Both the input and output of the app are multilingual, so it works with whatever language the user has set their device to.
                 </p>
                 <a href="https://github.com/UCL-SightPlusPlus/SightPlusPlus-App" class="btn btn-primary">Go to Github</a>
               </div>
@@ -90,23 +99,11 @@
               <div class="card-body">
                 <h5 class="card-title">Location Server</h5>
                 <p class="card-text">
-                  In the Sight++ and AVINA service enabled location, there will be a server deployed in the local place 
-                  that all the NUCs in that location connect to. Therefore, the requests
-                  from the NUCs will be processed by the location server and stored or updated 
-                  in the MongoDB.  By the convention of NUCs and location server of this project, 
-                  there are mainly 2 types of requests that NUCs will send to local server. 
-                  One is about the information of Intel cameras which connect to NUCs so that 
-                  the local server gets some essential information about these cameras 
-                  such as site name of the building and exact location in the building. 
-                  Besides, Bluetooth Beacons’ information will also be stored in local 
-                  server by sending requests. Both information of cameras and Bluetooth 
-                  Beacons will be in the device collection of MongoDB but there is a device type 
-                  field to differentiate them, also each device has a unique identifier id. 
-                  The other type of request that NUCs will send out is about the records 
-                  which contain the information of environment that captured and analysed by cameras and NUCs. 
-                  User’s app will also need to be connected to local server. Therefore, 
-                  local server provides API for the app as well so that user can 
-                  get the assistance messages.
+                  The location server is what the app connects to. Once the app comes within range of the server it will try to initiate a connection. When a connection has been established, the user will begin to receive environmental information about the location and are allowed to ask questions.
+
+                  The app is also connected to NUC/cameras to get the real-time events happing in the room where the camera is setup. Records from the cameras are sent to the server to be stored.
+
+                  An Azure QnA chatbot is also connected to the server to handle general question that come from the user. The chatbot will respond and server will send this back to the user.
                 </p>
                 <a href="https://github.com/UCL-SightPlusPlus/SightPlusPlus-LocationServer" class="btn btn-primary">
                   Go to Github
@@ -120,14 +117,31 @@
               <div class="card-body">
                 <h5 class="card-title">Orgnisation Server</h5>
                 <p class="card-text">
-                  Organisation server is a web app for IT administrator to view all the profiles of local servers. 
-                  It lists all devices’ status and location of each local Sight++ setting for monitoring. 
-                  It provides API for local servers for local devices update. 
-                  Also, after administrator set up the knowledge base of location in Azure QnA Maker, 
-                  administrator can save the link of it in organisation server so that once they want to make modification to knowledge base, 
-                  it can easily be accessed through organisation server page.
+                  The organisation server manages the profiles of the locations servers that are set up in branches of the organisation. Here, organisation’s IT administrator can see where locations servers have been set up and what Bluetooth beacons and cameras are being used currently.
                 </p>
                 <a href="https://github.com/UCL-SightPlusPlus/SightPlusPlus-OrganisationServer" class="btn btn-primary">Go to Github</a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                Component
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Bluetooth Beacons</h5>
+                <p class="card-text">
+                  Bluetooth beacons are set up within areas (rooms, floors, sections) of the locations and broadcast an ID. This ID is received by the app once in a close enough range to approximate the user’s location.
+                </p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                Component
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">NUCs and Cameras</h5>
+                <p class="card-text">
+                  Cameras are set up in each area, and they’re attached to NUCs. These NUCs have an objection recognition service called Sight++ running on them. Sight++ analyses images from the cameras and detects objections within them—this is then sent to the location server for real-time environment insight.
+                </p>
               </div>
             </div>
           </div>
