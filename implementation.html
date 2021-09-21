@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Font Awesome icons (free version)-->
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <title>AVINA website</title>
+</head>
+<body>
+<nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light">
+  <div class="container">
+    <span class="navbar-brand mb-0 h1">AVINA</span>
+    <button
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbar"
+            aria-controls="navbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            class="navbar-toggler"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav ms-auto ">
+        <li class="nav-item active">
+          <a href="index.html" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a href="overview.html" class="nav-link">Overview</a>
+        </li>
+        <li class="nav-item active">
+          <a href="#" class="nav-link">Implementation</a>
+        </li>
+        <li class="nav-item active">
+          <a href="test.html" class="nav-link">Test</a>
+        </li>
+        <li class="nav-item active">
+          <a href="installation.html" class="nav-link">Installation</a>
+        </li>
+        <li class="nav-item active">
+          <a href="team.html" class="nav-link">Team</a>
+        </li>
+        <li class="nav-item active">
+          <a href="https://github.com/UCL-SightPlusPlus" class="nav-link">
+            <i class="fab fa-github" style="width:25px; height:25px;"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Main Content-->
+<div class="container mt-5 head">
+  <div class="text-center">
+    <div id="implementation" style="margin-bottom: 5%;">
+      <h2 class="fw-light">Implementation</h2>
+      <div class="container text mt-5" style="width: 70%;">
+        <p>
+          This is a functional view of the AVINA and its three systems. We’ll go into detail about them below.
+        </p>
+        <img class="card-img-top" src="images/DevDia.png" alt="development view">
+        <h4 class="fw-light">App</h4>
+        <img class="card-img-top" src="images/AppDia.png" alt="app view">
+        <p>When the app is running, it uses the ‘Server Connectivity Handler’ to scan for AVINA enabled locations. Once it comes in range of one, it will send a ‘AVINA Location Found Notification’ to the user, which one pressed will take them to the app’s main screen. </p>
+        <p>Once connected, the ‘User Locator’ is used to find the which area the user’s in at the location, which is done by searching for Bluetooth beacon signals. Once a signal is discovered by the app, it will use the location server’s app interface to find which area this Bluetooth beacon signal belong to.</p>
+        <p>Whenever the user asks a question through voice command (or text field), the question is sent through a ‘Transcriber’ to convert the speech into text, and then into a ‘Translator’ to turn the speech into English, since that language the server requires. This question is then sent to the location server’s app interface to get an answer.</p>
+        <p>When the answer is received from the server, the ‘Question Handler’ first sends it to the ‘Translator’ to translate it into the user’s device’s set language; this text is then sent to the ‘Speech Synthesizer’ to read it outload to the user.</p>
+        <h4 class="fw-light">Location Server</h4>
+
+        <h4 class="fw-light">Organisation Server</h4>
+
+
+      </div>
+    </div>
+
+  </div>
+  <!-- Footer-->
+  <footer class="border-top">
+    <img src="images/logos.png" style="width: 500px; height: 58.5px; display: block; margin: auto;" class="mt-3 mb-3">
+    <div class="small text-center text-muted fst-italic">Copyright &copy; AVINA 2021</div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+</body>
+</html>
