@@ -65,16 +65,37 @@
         <p>
           This is a functional view of the AVINA and its three systems. We’ll go into detail about them below.
         </p>
+
         <img class="card-img-top" src="images/DevDia.png" alt="development view">
+        <hr>
+
         <h4 class="fw-light">App</h4>
-        <div align="center"><img src="images/AppDia.png" alt="app view" align="middle" width="300" height="400"></div>
+        <div align="center"><img src="images/AppDia.png" alt="app view" align="middle" width="40%" height="40%"></div>
+        <br>
         <p>When the app is running, it uses the ‘Server Connectivity Handler’ to scan for AVINA enabled locations. Once it comes in range of one, it will send a ‘AVINA Location Found Notification’ to the user, which one pressed will take them to the app’s main screen. </p>
         <p>Once connected, the ‘User Locator’ is used to find the which area the user’s in at the location, which is done by searching for Bluetooth beacon signals. Once a signal is discovered by the app, it will use the location server’s app interface to find which area this Bluetooth beacon signal belong to.</p>
         <p>Whenever the user asks a question through voice command (or text field), the question is sent through a ‘Transcriber’ to convert the speech into text, and then into a ‘Translator’ to turn the speech into English, since that language the server requires. This question is then sent to the location server’s app interface to get an answer.</p>
         <p>When the answer is received from the server, the ‘Question Handler’ first sends it to the ‘Translator’ to translate it into the user’s device’s set language; this text is then sent to the ‘Speech Synthesizer’ to read it outload to the user.</p>
+        <hr>
         <h4 class="fw-light">Location Server</h4>
+        <div align="center"><img src="images/location_view.png" alt="app view" align="middle" width="50%" height="50%"></div>
+        <br>
+        <p>When the location server is set up, it has two interfaces that are used to send and receive information.</p>
+        <p>The ‘Camera (NUC) Interface’ is used to receive events from the cameras and then store them in the ‘Building Event Database’ for later use. The cameras are identified by their ID which were set up within the ‘Device Database’. </p>
+        <p>When a person asks a question, the textual question is sent through the interface and received by the ‘Question Handler.’
+          The handler will then search for keywords within the question and see if it contains certain words (e.g., ‘chair’, ‘queue’) and will then decide whether to get information from the ‘Room Event Finder’
+          (information specific for the room the user is in) or if it should send the question to the Azure QnA chatbot.
+          Regardless, a response will be returned, and the handler will use the ‘Sentence Generator’ to make the response into an actual sentence meant to be heard by the user.
+          This sentence will then be sent to the ‘AVINA App Interface’ and to the user’s phone where it is read out to them. </p>
+        <hr>
 
         <h4 class="fw-light">Organisation Server</h4>
+        <div align="center"><img src="images/organisation_view.png" alt="app view" align="middle" width="50%" height="50%"></div>
+        <br>
+
+        <p>An organisation will set up this server in their head office to monitor branches. They’ll get a code which they share with their branches. At which point, profiles will be added to the server’s home page.</p>
+        <p>Periodically, the locations servers will send the current devices being used via the ‘Location Server Profile Interface’ This is information is then handled by the ‘Profile Handler’ and stored in the ‘Profile Database’
+          The IT administrator of the organisation will then be able to view these devices the through the ‘Server Profile Page’ by selecting a specific branch location. </p>
 
 
       </div>
